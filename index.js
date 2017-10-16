@@ -11,7 +11,19 @@ import {
   ViewPropTypes
 } from 'react-native';
 
-const CameraManager = NativeModules.CameraManager || NativeModules.CameraModule;
+const CameraManager = NativeModules.CameraManager || NativeModules.CameraModule || {
+  Aspect: '',
+  BarCodeType: '',
+  Type: '',
+  CaptureMode: '',
+  CaptureTarget: '',
+  CaptureQuality: '',
+  Orientation: '',
+  FlashMode: '',
+  TorchMode: '',
+  Simulator: true
+}
+
 const CAMERA_REF = 'camera';
 
 function convertNativeProps(props) {
@@ -69,7 +81,8 @@ export default class Camera extends Component {
     CaptureQuality: CameraManager.CaptureQuality,
     Orientation: CameraManager.Orientation,
     FlashMode: CameraManager.FlashMode,
-    TorchMode: CameraManager.TorchMode
+    TorchMode: CameraManager.TorchMode,
+    Simulator: CameraManager.Simulator
   };
 
   static propTypes = {
